@@ -9,17 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Theme Toggle Button -->
     <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
         <i class="fas fa-moon"></i>
     </button>
 
-    <!-- Animações de luz -->
     <div class="bg-gradient-animation"></div>
     <div class="bg-gradient-animation-2"></div>
     <div class="bg-gradient-animation-3"></div>
     
-    <!-- Logo WFS girando nos cantos -->
     <div class="bg-logo-container">
         <div class="bg-logo-tl">WFS</div>
         <div class="bg-logo-tr">WFS</div>
@@ -28,7 +25,6 @@
         <div class="bg-logo-center">WFS</div>
     </div>
 
-    <!-- Particles Container -->
     <div class="particles-container" id="particlesContainer"></div>
 
     <!-- TELA DE LOGIN -->
@@ -169,12 +165,10 @@
                             <div class="header-decoration"></div>
                         </div>
                         <div class="panel-body">
-                            <!-- CAMPO MATRÍCULA CORRIGIDO - placeholder com espaço vazio -->
                             <div class="input-group autocomplete-container">
                                 <i class="fas fa-id-card"></i>
-                                <input type="text" id="matricula" placeholder=" " autocomplete="off">
+                                <input type="text" id="matricula" placeholder="Digite a matrícula..." autocomplete="off">
                                 <div id="autocompleteList" class="autocomplete-list"></div>
-                                <label>Matrícula do Colaborador</label>
                                 <div class="input-border"></div>
                             </div>
                             <div id="infoColaborador" class="colaborador-info" style="display:none">
@@ -197,18 +191,15 @@
                                     <select id="epiSelect">
                                         <option value="" disabled selected>Selecione um EPI</option>
                                     </select>
-                                    <label>EPI</label>
                                     <div class="input-border"></div>
                                 </div>
                                 <div class="input-group" style="flex:0.8; margin-bottom:0">
                                     <i class="fas fa-boxes"></i>
-                                    <input type="number" id="quantidade" value="1" min="1">
-                                    <label>Quantidade</label>
+                                    <input type="number" id="quantidade" value="1" min="1" placeholder=" ">
                                     <div class="input-border"></div>
                                 </div>
                                 <button class="btn-adicionar" onclick="adicionarRequerimento()">
                                     <i class="fas fa-plus"></i> Adicionar
-                                    <span class="btn-ripple"></span>
                                 </button>
                             </div>
                             <div class="carrinho-container">
@@ -221,11 +212,9 @@
                             <div class="button-group">
                                 <button class="btn-primary" id="btnFinalizar">
                                     <i class="fas fa-check-circle"></i> FINALIZAR REQUERIMENTO
-                                    <div class="btn-glow"></div>
                                 </button>
                                 <button class="btn-cancel" onclick="cancelarRequerimento()">
                                     <i class="fas fa-trash-alt"></i> CANCELAR
-                                    <div class="btn-glow"></div>
                                 </button>
                             </div>
                         </div>
@@ -256,55 +245,21 @@
                     <div class="panel-body">
                         <div class="table-wrapper">
                             <table id="tabelaEstoque">
-                                <thead>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Descrição</th>
-                                        <th>Quantidade</th>
-                                        <th>Status</th>
-                                        <th>Em uso</th>
-                                        <th>Última movimentação</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
+                                <thead><tr><th>Código</th><th>Descrição</th><th>Quantidade</th><th>Status</th><th>Em uso</th><th>Última movimentação</th><th>Ações</th></tr></thead>
                                 <tbody id="estoqueBody"></tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                
                 <div class="panel glass-effect" style="margin-top: 20px;">
-                    <div class="panel-header">
-                        <i class="fas fa-plus-circle"></i>
-                        <h2>Cadastrar / Editar EPI</h2>
-                        <div class="header-decoration"></div>
-                    </div>
+                    <div class="panel-header"><i class="fas fa-plus-circle"></i><h2>Cadastrar / Editar EPI</h2><div class="header-decoration"></div></div>
                     <div class="panel-body">
                         <div class="form-row-cadastro">
-                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
-                                <i class="fas fa-tag"></i>
-                                <input type="text" id="epiCodigo" placeholder=" ">
-                                <label>Código do EPI</label>
-                                <div class="input-border"></div>
-                            </div>
-                            <div class="input-group" style="flex: 2; margin-bottom: 0;">
-                                <i class="fas fa-align-left"></i>
-                                <input type="text" id="epiDescricao" placeholder=" ">
-                                <label>Descrição do EPI</label>
-                                <div class="input-border"></div>
-                            </div>
-                            <div class="input-group" style="flex: 0.8; margin-bottom: 0;">
-                                <i class="fas fa-boxes"></i>
-                                <input type="number" id="epiQtd" value="0" min="0" step="1">
-                                <label>Quantidade</label>
-                                <div class="input-border"></div>
-                            </div>
-                            <button class="btn-primary" onclick="salvarEPI()" style="width: auto; padding: 0 25px; height: 52px;">
-                                <i class="fas fa-save"></i> Salvar
-                            </button>
-                            <button class="btn-secondary" onclick="limparEPI()" style="width: auto; padding: 0 25px; height: 52px;">
-                                <i class="fas fa-eraser"></i> Limpar
-                            </button>
+                            <div class="input-group" style="flex:1"><i class="fas fa-tag"></i><input type="text" id="epiCodigo" placeholder=" "><label>Código</label><div class="input-border"></div></div>
+                            <div class="input-group" style="flex:2"><i class="fas fa-align-left"></i><input type="text" id="epiDescricao" placeholder=" "><label>Descrição</label><div class="input-border"></div></div>
+                            <div class="input-group" style="flex:0.8"><i class="fas fa-boxes"></i><input type="number" id="epiQtd" value="0" min="0"><label>Quantidade</label><div class="input-border"></div></div>
+                            <button class="btn-primary" onclick="salvarEPI()"><i class="fas fa-save"></i> Salvar</button>
+                            <button class="btn-secondary" onclick="limparEPI()"><i class="fas fa-eraser"></i> Limpar</button>
                         </div>
                     </div>
                 </div>
@@ -321,7 +276,7 @@
                             <div class="input-group"><i class="fas fa-building"></i><input type="text" id="cadSecao" placeholder=" "><label>Seção</label><div class="input-border"></div></div>
                             <div class="input-group"><i class="fas fa-calendar-alt"></i><input type="date" id="cadDataAdmissao" placeholder=" "><label>Data Admissão</label><div class="input-border"></div></div>
                             <div class="input-group"><i class="fas fa-briefcase"></i><input type="text" id="cadFuncao" placeholder=" "><label>Função</label><div class="input-border"></div></div>
-                            <button class="btn-primary" id="btnCadastrar"><i class="fas fa-save"></i> Cadastrar<div class="btn-glow"></div></button>
+                            <button class="btn-primary" id="btnCadastrar"><i class="fas fa-save"></i> Cadastrar</button>
                         </div>
                     </div>
                     <div class="panel glass-effect">
@@ -334,17 +289,7 @@
                             </div>
                             <div class="table-wrapper">
                                 <table id="tabelaColaboradores">
-                                    <thead>
-                                        <tr>
-                                            <th>Matrícula</th>
-                                            <th>Nome</th>
-                                            <th>Seção</th>
-                                            <th>Admissão</th>
-                                            <th>Função</th>
-                                            <th>EPIs</th>
-                                            <th>Ações</th>
-                                        </tr>
-                                    </thead>
+                                    <thead><tr><th>Matrícula</th><th>Nome</th><th>Seção</th><th>Admissão</th><th>Função</th><th>EPIs</th><th>Ações</th></tr></thead>
                                     <tbody id="colaboradoresTableBody"></tbody>
                                 </table>
                             </div>
@@ -387,62 +332,27 @@
                     <div class="panel-header"><i class="fas fa-chart-bar"></i><h2>Relatórios</h2><div class="header-decoration"></div></div>
                     <div class="panel-body">
                         <div class="reports-grid">
-                            <div class="report-card">
-                                <div class="report-icon"><i class="fas fa-calendar-day"></i></div>
-                                <h3>Relatório Diário</h3>
-                                <div class="report-input-group">
-                                    <input type="date" id="dataDiaria" class="report-input">
-                                    <button class="btn-report" onclick="relatorioDiario()"><i class="fas fa-download"></i> Gerar PDF</button>
-                                </div>
-                            </div>
-                            <div class="report-card">
-                                <div class="report-icon"><i class="fas fa-calendar-month"></i></div>
-                                <h3>Relatório Mensal</h3>
-                                <div class="report-input-group">
-                                    <input type="month" id="dataMensal" class="report-input">
-                                    <button class="btn-report" onclick="relatorioMensal()"><i class="fas fa-download"></i> Gerar PDF</button>
-                                </div>
-                            </div>
-                            <div class="report-card">
-                                <div class="report-icon"><i class="fas fa-calendar-year"></i></div>
-                                <h3>Relatório Anual</h3>
-                                <div class="report-input-group">
-                                    <input type="number" id="dataAnual" class="report-input" placeholder="Ano">
-                                    <button class="btn-report" onclick="relatorioAnual()"><i class="fas fa-download"></i> Gerar PDF</button>
-                                </div>
-                            </div>
-                            <div class="report-card">
-                                <div class="report-icon"><i class="fas fa-user-clock"></i></div>
-                                <h3>Histórico por Colaborador</h3>
-                                <div class="report-input-group">
-                                    <input type="text" id="buscaRelatorio" class="report-input" placeholder="Matrícula">
-                                    <button class="btn-report" onclick="relatorioColaborador()"><i class="fas fa-download"></i> Gerar PDF</button>
-                                </div>
-                            </div>
-                            <div class="report-card">
-                                <div class="report-icon"><i class="fas fa-chart-line"></i></div>
-                                <h3>Relatório de Estoque</h3>
-                                <button class="btn-report" onclick="relatorioEstoque()"><i class="fas fa-download"></i> Gerar PDF</button>
-                            </div>
+                            <div class="report-card"><div class="report-icon"><i class="fas fa-calendar-day"></i></div><h3>Relatório Diário</h3><div class="report-input-group"><input type="date" id="dataDiaria" class="report-input"><button class="btn-report" onclick="relatorioDiario()">Gerar PDF</button></div></div>
+                            <div class="report-card"><div class="report-icon"><i class="fas fa-calendar-month"></i></div><h3>Relatório Mensal</h3><div class="report-input-group"><input type="month" id="dataMensal" class="report-input"><button class="btn-report" onclick="relatorioMensal()">Gerar PDF</button></div></div>
+                            <div class="report-card"><div class="report-icon"><i class="fas fa-calendar-year"></i></div><h3>Relatório Anual</h3><div class="report-input-group"><input type="number" id="dataAnual" class="report-input" placeholder="Ano"><button class="btn-report" onclick="relatorioAnual()">Gerar PDF</button></div></div>
+                            <div class="report-card"><div class="report-icon"><i class="fas fa-user-clock"></i></div><h3>Histórico por Colaborador</h3><div class="report-input-group"><input type="text" id="buscaRelatorio" class="report-input" placeholder="Matrícula"><button class="btn-report" onclick="relatorioColaborador()">Gerar PDF</button></div></div>
+                            <div class="report-card"><div class="report-icon"><i class="fas fa-chart-line"></i></div><h3>Relatório de Estoque</h3><button class="btn-report" onclick="relatorioEstoque()">Gerar PDF</button></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- GESTÃO DE USUÁRIOS (Admin) -->
+            <!-- USUÁRIOS -->
             <div id="tab-usuarios" class="tab-content">
                 <div class="panel glass-effect">
                     <div class="panel-header"><i class="fas fa-users-cog"></i><h2>Gestão de Usuários</h2><div class="header-decoration"></div></div>
-                    <div class="panel-body">
-                        <div id="listaUsuarios"></div>
-                    </div>
+                    <div class="panel-body"><div id="listaUsuarios"></div></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="feedbackMsg" class="feedback-toast"></div>
-
     <script src="script.js"></script>
 </body>
 </html>
