@@ -601,7 +601,7 @@ function renderizarHistorico(filtro=""){
 function renderizarColaboradores(busca=""){
     const tbody = document.getElementById("colaboradoresTableBody");
     if(!tbody) return;
-    if(!busca){ tbody.innerHTML='<td><td colspan="7"><div class="empty-state"><i class="fas fa-search"></i><p>Digite matrícula ou nome para buscar</p></div>}</td></tr>'; return; }
+    if(!busca){ tbody.innerHTML='<tr><td colspan="7"><div class="empty-state"><i class="fas fa-search"></i><p>Digite matrícula ou nome para buscar</p></div></td></tr>'; return; }
     const filtrados = colaboradores.filter(c=>c.matricula.toLowerCase().includes(busca.toLowerCase())||c.nome.toLowerCase().includes(busca.toLowerCase()));
     if(filtrados.length===0){ tbody.innerHTML='<tr><td colspan="7"><div class="empty-state"><i class="fas fa-user-slash"></i><p>Nenhum colaborador encontrado</p></div></td></tr>'; return; }
     tbody.innerHTML = "";
@@ -680,7 +680,7 @@ function relatorioMensal() {
     const [ano, mes] = ma.split('-');
     const movs = movimentacoes.filter(m => { const [d, m2, a] = m.data.split('/'); return m2 === mes && a === ano; });
     let tabela = '';
-    for(const m of movs){ tabela += `<td><td style="padding:6px">${m.dataHora}</td><td style="padding:6px">${m.matricula}</td><td style="padding:6px">${m.nomeColab}</td><td style="padding:6px">${m.descricaoEPI}</td><td style="padding:6px">${m.quantidade}</td></tr>`; }
+    for(const m of movs){ tabela += `<tr><td style="padding:6px">${m.dataHora}</td><td style="padding:6px">${m.matricula}</td><td style="padding:6px">${m.nomeColab}</td><td style="padding:6px">${m.descricaoEPI}</td><td style="padding:6px">${m.quantidade}</td></tr>`; }
     if(movs.length === 0) tabela = '<tr><td colspan="5" style="text-align:center;padding:6px">Nenhuma movimentação encontrada</td></tr>';
     const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Relatório Mensal - ${mes}/${ano}</title><style>body{font-family:Arial;margin:15px;font-size:11px}h1{font-size:16px;color:#2563EB}h2{font-size:14px}table{width:100%;border-collapse:collapse;margin-top:10px}th{background:#2563EB;color:#fff;padding:6px;text-align:left;font-size:10px}td{border:1px solid #ccc;padding:6px;font-size:9px}.footer{margin-top:15px;font-size:8px;text-align:center;border-top:1px solid #ccc;padding-top:8px}</style></head><body><h1>EPI Control WFS</h1><h2>Relatório Mensal - ${mes}/${ano}</h2><p>Gerado em: ${new Date().toLocaleString()}</p><p><strong>Total de movimentações:</strong> ${movs.length}</p><table border="1"><thead><tr><th>Data/Hora</th><th>Matrícula</th><th>Colaborador</th><th>EPI</th><th>Quantidade</th></tr></thead><tbody>${tabela}</tbody></table><div class="footer">Documento gerado eletronicamente pelo sistema EPI Control WFS em ${new Date().toLocaleString()}</div></body></html>`;
     gerarPDF(html, `relatorio_mensal_${ma}.pdf`);
@@ -693,7 +693,7 @@ function relatorioAnual() {
     let tabela = '';
     for(const m of movs){ tabela += `<tr><td style="padding:6px">${m.dataHora}</td><td style="padding:6px">${m.matricula}</td><td style="padding:6px">${m.nomeColab}</td><td style="padding:6px">${m.descricaoEPI}</td><td style="padding:6px">${m.quantidade}</td></tr>`; }
     if(movs.length === 0) tabela = '<tr><td colspan="5" style="text-align:center;padding:6px">Nenhuma movimentação encontrada</td></tr>';
-    const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Relatório Anual - ${ano}</title><style>body{font-family:Arial;margin:15px;font-size:11px}h1{font-size:16px;color:#2563EB}h2{font-size:14px}table{width:100%;border-collapse:collapse;margin-top:10px}th{background:#2563EB;color:#fff;padding:6px;text-align:left;font-size:10px}td{border:1px solid #ccc;padding:6px;font-size:9px}.footer{margin-top:15px;font-size:8px;text-align:center;border-top:1px solid #ccc;padding-top:8px}</style></head><body><h1>EPI Control WFS</h1><h2>Relatório Anual - ${ano}</h2><p>Gerado em: ${new Date().toLocaleString()}</p><p><strong>Total de movimentações:</strong> ${movs.length}</p><table border="1"><thead><tr><th>Data/Hora</th><th>Matrícula</th><th>Colaborador</th><th>EPI</th><th>Quantidade</th></tr></thead><tbody>${tabela}</tbody>追赶<div class="footer">Documento gerado eletronicamente pelo sistema EPI Control WFS em ${new Date().toLocaleString()}</div></body></html>`;
+    const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Relatório Anual - ${ano}</title><style>body{font-family:Arial;margin:15px;font-size:11px}h1{font-size:16px;color:#2563EB}h2{font-size:14px}table{width:100%;border-collapse:collapse;margin-top:10px}th{background:#2563EB;color:#fff;padding:6px;text-align:left;font-size:10px}td{border:1px solid #ccc;padding:6px;font-size:9px}.footer{margin-top:15px;font-size:8px;text-align:center;border-top:1px solid #ccc;padding-top:8px}</style></head><body><h1>EPI Control WFS</h1><h2>Relatório Anual - ${ano}</h2><p>Gerado em: ${new Date().toLocaleString()}</p><p><strong>Total de movimentações:</strong> ${movs.length}</p><table border="1"><thead><tr><th>Data/Hora</th><th>Matrícula</th><th>Colaborador</th><th>EPI</th><th>Quantidade</th></tr></thead><tbody>${tabela}</tbody></table><div class="footer">Documento gerado eletronicamente pelo sistema EPI Control WFS em ${new Date().toLocaleString()}</div></body></html>`;
     gerarPDF(html, `relatorio_anual_${ano}.pdf`);
 }
 
@@ -715,7 +715,7 @@ function relatorioEstoque() {
     let tabela = '';
     for(const e of epis){
         const status = e.quantidade > 0 ? (e.quantidade <= 5 ? 'Alerta - Estoque Baixo' : 'Disponível') : 'Esgotado';
-        tabela += `<tr><td style="padding:6px"><strong>${e.codigo}</strong></td><td style="padding:6px">${e.descricao}</td><td style="padding:6px">${e.quantidade} unidades</td> <td style="padding:6px">${e.emUso} em uso</td><td style="padding:6px">${status}</td></tr>`;
+        tabela += `<tr><td style="padding:6px"><strong>${e.codigo}</strong></td><td style="padding:6px">${e.descricao}</td><td style="padding:6px">${e.quantidade} unidades</td><td style="padding:6px">${e.emUso} em uso</td><td style="padding:6px">${status}</td></tr>`;
     }
     const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Relatório Estoque</title><style>body{font-family:Arial;margin:15px;font-size:11px}h1{font-size:16px;color:#2563EB}p{font-size:10px}table{width:100%;border-collapse:collapse;margin-top:10px}th{background:#2563EB;color:#fff;padding:6px;text-align:left;font-size:10px}td{border:1px solid #ccc;padding:6px;font-size:9px}.footer{margin-top:15px;font-size:8px;text-align:center;border-top:1px solid #ccc;padding-top:8px}</style></head><body><h1>Relatório de Estoque</h1><p>Gerado em: ${new Date().toLocaleString()}</p><table border="1"><thead><tr><th>Código</th><th>Descrição</th><th>Quantidade</th><th>Em Uso</th><th>Status</th></tr></thead><tbody>${tabela}</tbody></table><div class="footer">Documento gerado eletronicamente pelo sistema EPI Control WFS em ${new Date().toLocaleString()}</div></body></html>`;
     gerarPDF(html, `relatorio_estoque.pdf`);
